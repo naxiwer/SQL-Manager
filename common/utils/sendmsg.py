@@ -196,7 +196,7 @@ class MsgSender(object):
         }
         res = requests.post(url=send_url, json=data, timeout=5)
         r_json = res.json()
-        if r_json['errcode'] == 0:
+        if res.status_code == 200:
             logger.debug(f'企业微信机器人推送成功\n通知对象：机器人')
         else:
             logger.error(f'企业微信机器人推送失败\n请求连接:{send_url}\n请求参数:{data}\n请求响应:{r_json}')
@@ -210,7 +210,7 @@ class MsgSender(object):
         }
         res = requests.post(url=send_url, json=data, timeout=5)
         r_json = res.json()
-        if r_json['errcode'] == 0:
+        if res.status_code == 200:
             logger.debug(f'Slack推送成功\n通知对象：机器人')
         else:
             logger.error(f'Slack推送失败\n请求连接:{send_url}\n请求参数:{data}\n请求响应:{r_json}')
@@ -224,7 +224,7 @@ class MsgSender(object):
         }
         r = requests.post(url=url, json=data)
         r_json = r.json()
-        if r_json['ok']:
+        if res.status_code == 200:
             logger.debug(f'飞书Webhook推送成功\n通知对象：{url}\n消息内容：{content}')
         else:
             logger.error(f"飞书Webhook推送失败错误码\n请求url:{url}\n请求data:{data}\n请求响应:{r_json}")
@@ -244,7 +244,7 @@ class MsgSender(object):
             }
         }
         r = requests.post(url=url, json=data, headers={'Authorization': "Bearer " + get_feishu_access_token()}).json()
-        if r['code'] == 0:
+        if res.status_code == 200:
             logger.debug(f'飞书单推推送成功\n通知对象：{url}\n消息内容：{content}')
         else:
             logger.error(f"飞书单推推送失败错误码\n请求url:{url}\n请求data:{data}\n请求响应:{r}")
