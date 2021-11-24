@@ -18,7 +18,7 @@ ALLOWED_HOSTS = ['*']
 USE_X_FORWARDED_HOST = True
 
 # 请求限制
-DATA_UPLOAD_MAX_MEMORY_SIZE = 15728640
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1572864000
 
 # Application definition
 INSTALLED_APPS = (
@@ -121,13 +121,13 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # 关闭浏览器，则COOKIE失效
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'archery',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': 'sqldeck',
+        'USER': 'sqldeck_user',
+        'PASSWORD': '123456',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '3308',
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'init_command': "SET sql_mode=' '",
             'charset': 'utf8mb4'
         },
         'TEST': {
